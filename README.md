@@ -14,7 +14,6 @@ The source code for this project is available on GitHub: [https://github.com/cha
 
 - **Interactive Timeline:** Explore ancient, medieval, and modern history with collapsible sections for detailed information.
 - **Search Functionality:** Quickly find information by searching historical events.
-- **Image Gallery:** View images related to different historical periods.
 - **Contact Form:** Send us your queries or feedback directly via email.
 
 ## Technologies Used
