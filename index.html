@@ -15,13 +15,17 @@
         header {
             background-color: #333;
             color: #fff;
-            padding: 10px 0;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         nav {
             background-color: #444;
             overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -31,20 +35,25 @@
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
         nav a:hover {
-            background-color: #ddd;
-            color: #333;
+            background-color: #555;
         }
 
-        section {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            line-height: 1.6;
         }
 
-        h1 {
+        .section-title {
+            margin-bottom: 20px;
+            font-size: 28px;
             color: #333;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
         }
 
         .timeline {
@@ -55,19 +64,140 @@
         .event {
             background-color: #fff;
             margin: 10px 0;
-            padding: 15px;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .event:hover {
+            transform: scale(1.02);
+        }
+
+        .event h3 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .event p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 18px;
+            font-size: 18px;
+            border: none;
+            text-align: left;
+            outline: none;
+            background-color: #444;
+            color: white;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border-left: 3px solid #444;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #444;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            padding: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .search-container button:hover {
+            background-color: #555;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #444;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            padding: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #555;
         }
 
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                float: none;
+                width: 100%;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .collapsible {
+                padding: 14px 20px;
+            }
         }
     </style>
 </head>
@@ -81,65 +211,135 @@
     <a href="#ancient">Ancient History</a>
     <a href="#medieval">Medieval History</a>
     <a href="#modern">Modern History</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
 </nav>
 
-<section id="ancient">
-    <h2>Ancient History</h2>
-    <div class="timeline">
-        <div class="event">
-            <h3>Mesopotamia (c. 3500 BC)</h3>
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search history...">
+        <button onclick="searchContent()">Search</button>
+    </div>
+
+    <section id="ancient">
+        <h2 class="section-title">Ancient History</h2>
+        <button class="collapsible">Mesopotamia (c. 3500 BC)</button>
+        <div class="content">
             <p>Mesopotamia, known as the cradle of civilization, saw the rise of the first cities and empires. It was here that writing, agriculture, and urbanization first developed.</p>
         </div>
-        <div class="event">
-            <h3>Ancient Egypt (c. 3100 BC)</h3>
+
+        <button class="collapsible">Ancient Egypt (c. 3100 BC)</button>
+        <div class="content">
             <p>Ancient Egypt was a powerful civilization that thrived along the Nile River. The Egyptians are known for their monumental architecture, including the pyramids and the Sphinx.</p>
         </div>
-        <div class="event">
-            <h3>Indus Valley Civilization (c. 2500 BC)</h3>
+
+        <button class="collapsible">Indus Valley Civilization (c. 2500 BC)</button>
+        <div class="content">
             <p>The Indus Valley Civilization was one of the world's earliest urban cultures, known for its advanced city planning, architecture, and social organization.</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="medieval">
-    <h2>Medieval History</h2>
-    <div class="timeline">
-        <div class="event">
-            <h3>Fall of the Western Roman Empire (476 AD)</h3>
+    <section id="medieval">
+        <h2 class="section-title">Medieval History</h2>
+        <button class="collapsible">Fall of the Western Roman Empire (476 AD)</button>
+        <div class="content">
             <p>The fall of the Western Roman Empire marked the beginning of the Middle Ages in Europe, a period characterized by feudalism, the rise of Christianity, and the Crusades.</p>
         </div>
-        <div class="event">
-            <h3>Byzantine Empire (c. 500-1453 AD)</h3>
+
+        <button class="collapsible">Byzantine Empire (c. 500-1453 AD)</button>
+        <div class="content">
             <p>The Byzantine Empire, centered in Constantinople, preserved much of Roman and Greek culture and played a crucial role in the spread of Christianity.</p>
         </div>
-        <div class="event">
-            <h3>The Black Death (1347-1351)</h3>
+
+        <button class="collapsible">The Black Death (1347-1351)</button>
+        <div class="content">
             <p>The Black Death was one of the most devastating pandemics in human history, leading to the deaths of millions of people across Europe, Asia, and Africa.</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="modern">
-    <h2>Modern History</h2>
-    <div class="timeline">
-        <div class="event">
-            <h3>Industrial Revolution (c. 1760-1840)</h3>
+    <section id="modern">
+        <h2 class="section-title">Modern History</h2>
+        <button class="collapsible">Industrial Revolution (c. 1760-1840)</button>
+        <div class="content">
             <p>The Industrial Revolution was a period of significant industrial growth, leading to advancements in technology, transportation, and the economy.</p>
         </div>
-        <div class="event">
-            <h3>World War I (1914-1918)</h3>
+
+        <button class="collapsible">World War I (1914-1918)</button>
+        <div class="content">
             <p>World War I was a global conflict that reshaped the political landscape of Europe and led to significant social and economic changes worldwide.</p>
         </div>
-        <div class="event">
-            <h3>World War II (1939-1945)</h3>
+
+        <button class="collapsible">World War II (1939-1945)</button>
+        <div class="content">
             <p>World War II was a global conflict that involved many of the world's nations and resulted in widespread devastation and the reordering of international power.</p>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Image Gallery</h2>
+        <div class="gallery">
+            <img src="mesopotamia.jpg" alt="Mesopotamia">
+            <img src="egypt.jpg" alt="Ancient Egypt">
+            <img src="indus.jpg" alt="Indus Valley">
+            <img src="rome.jpg" alt="Ancient Rome">
+            <img src="medieval.jpg" alt="Medieval Europe">
+            <img src="industrial.jpg" alt="Industrial Revolution">
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="form-container">
+            <form action="mailto:example@example.com" method="post" enctype="text/plain">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+</div>
 
 <footer>
     <p>History of Civilization | All rights reserved &copy; 2024</p>
 </footer>
+
+<script>
+    // Collapsible functionality
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(collapsible => {
+        collapsible.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    });
+
+    // Search functionality
+    function searchContent() {
+        const query = document.getElementById('search').value.toLowerCase();
+        const events = document.querySelectorAll('.event');
+        events.forEach(event => {
+            const title = event.querySelector('h3').textContent.toLowerCase();
+            const content = event.querySelector('p').textContent.toLowerCase();
+            if (title.includes(query) || content.includes(query)) {
+                event.style.display = 'block';
+            } else {
+                event.style.display = 'none';
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
